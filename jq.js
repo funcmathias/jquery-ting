@@ -51,6 +51,7 @@ $("html").css({
 
 $("#soup").click(function(){
     $("#rainbow").slideToggle("slow");
+	$("#soup").text("And now click the rainbow!");
   });
 
 $("#rainbow").click(function(){
