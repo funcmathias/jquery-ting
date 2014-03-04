@@ -64,33 +64,22 @@ $("#rainbow").click(function(){
 	$("#text").empty().html("Feels good man. <br> Once you go 420, <br> theres no turning back!");
 	$("#soup").delay(50).fadeOut(300).html();
 
-	var svart="#000";
-	$("body").css({
-	"background-color":svart
-	});
-});
-
-$().show();
-
-(function loop() {
-    $("body").css({
-	"background-color":randoms
-	});
-
-	var randoms="rgb(255,130,255)";
-}());
-
-
-var min= 0;
-var max= 255;
-
-/*var randoms = Math.floor(Math.random() * (max - min + 1)) + min;*/
-
+	var min= 0;
+	var max= 255;
 
 setInterval(function(){
-	var randoms = Math.floor(Math.random() * (max - min + 1)) + min;
-	$("<div id=soup></div>").html("adadad"));
-},0);
+	var r = (Math.floor(Math.random() * (max - min + 1)) + min);
+	var g = (Math.floor(Math.random() * (max - min + 1)) + min);
+	var b = (Math.floor(Math.random() * (max - min + 1)) + min);
+	var color = "rgb(" + r + "," + g + "," + b + ")";
+	$("body").css({
+	"background-color":color
+	});
+	/*alert(color);*/
+},50);
+
+	});
+
 
 
 
