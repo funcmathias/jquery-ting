@@ -77,14 +77,18 @@ setInterval(function(){
 	var r = (Math.floor(Math.random() * (max - min + 1)) + min);
 	var g = (Math.floor(Math.random() * (max - min + 1)) + min);
 	var b = (Math.floor(Math.random() * (max - min + 1)) + min);
+
 	var color = "rgb(" + r + "," + g + "," + b + ")";
-	$("body").css({
-	"background-color":color
-	});
+	var color2 = "rgb(" + g + "," + b + "," + r + ")";
+
+	$("body").css({"background-color":color});
+
+	$("#head").css({"background-color":color2});
+	$("#text").css({"background-color":color2});
+
 	/*alert(color);*/
 },50);
-
-	});
+});
 
 
 
