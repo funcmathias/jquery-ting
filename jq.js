@@ -36,7 +36,7 @@ $("#rainbow").css({
 	"background-image":"url(http://www.pilgrimshospices.org/wp-content/uploads/artworks-000050032335-le33za-original.jpg)",
 	"background-size":"100% 100%",
 	"height":"400px",
-	"border-color":"#FFF",
+	"border":"none",
 	"display":"none"
 });
 
@@ -59,7 +59,13 @@ $("#rainbow").click(function(){
 		"color":"#009999"
 	});
 
-	$("#rainbow").delay(50).fadeOut(300)	
+	$("#rainbow").fadeOut(0)
+	$("#rainbow").css({
+		"background-image":"url(http://hoopinator.com/wp-content/uploads/2013/10/cannabisTRANS-1.png)",
+		"background-color":"transparent",
+		"height":"710px"
+	});
+	$("#rainbow").fadeIn(4096)
 	$("#head").empty().html("Wow, this site is such dynamic!");
 	$("#text").empty().html("Feels good man. <br> Once you go 420, <br> theres no turning back!");
 	$("#soup").delay(50).fadeOut(300).html();
