@@ -1,3 +1,7 @@
+$("head").append(
+	$("<title>AWESOME</title>")
+);
+
 $("body").append(
 	$("<div id=head></div>").text("Website of awesome stuff and things")
 );
@@ -7,11 +11,7 @@ $("body").append(
 );
 
 $("body").append(
-	$("<div id=wikiped></div>").html("I can tell you what Wikipedia is doing! (soon i hope) <br>")
-);
-
-$("#wikiped").append(
-	$("<button id=craveinfo></button>").html("I'm craving info!")
+	$("<div id=wikiped></div>").html("I can tell you what Wikipedia is doing! <br> Just a moment.")
 );
 
 $("body").append(
@@ -108,12 +108,14 @@ setInterval(function(){
 
 
 
-$("#craveinfo").click(function(){
+setInterval(function(){
 	$.getJSON("https://en.wikipedia.org/w/api.php?action=query&list=recentchanges&rcprop=title|ids|sizes|flags|user&rclimit=1&format=json&callback=?", function(json) {
-		var jstr = JSON.stringify(json, undefined, 2); // indentation level = 2
-	$("#wikiped").html(json.recentchanges[1].title);
+	var rawpagename = json.query.recentchanges[0].title;
+	var page_name = rawpagename.split(" ").join("_");
+	var linky = "https://en.wikipedia.org/wiki/" + page_name;
+	$("#wikiped").html("Recent update on Wikipedia:<br> Page Name: <a href=" + linky + ">" + rawpagename + "</a>");
 });
-});
+},5000);
 
 
 
