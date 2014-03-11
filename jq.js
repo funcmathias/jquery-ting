@@ -7,7 +7,15 @@ $("body").append(
 );
 
 $("body").append(
-	$("<div id=soup></div>").html("You can click here for a souprice tho :D")
+	$("<div id=wikiped></div>").html("I can tell you what Wikipedia is doing! (soon i hope) <br>")
+);
+
+$("#wikiped").append(
+	$("<button id=craveinfo></button>").html("I'm craving info!")
+);
+
+$("body").append(
+	$("<div id=soup></div>").html("You can click here for a bonus souprice if you don't like the rest of the site :D")
 );
 
 $("body").append(
@@ -24,13 +32,17 @@ $("div").css({
 	"padding":"8px",
 	"width":"710px",
 	"text-align":"center"
-	});
+});
 
 $("#head").css({
 	"color":"#FF9900",
 	"font-size":"32px",
 	"font-weight":"900"
-	});
+});
+
+$("#wikiped").css({
+	"background-color":"#FF9900"
+});
 
 $("#rainbow").css({
 	"background-image":"url(http://www.pilgrimshospices.org/wp-content/uploads/artworks-000050032335-le33za-original.jpg)",
@@ -50,12 +62,12 @@ $("html").css({
 
 
 $("#soup").click(function(){
-    $("#rainbow").slideToggle("slow");
+	$("#rainbow").slideToggle("slow");
 	$("#soup").text("And now click the rainbow!");
-  });
+});
 
 $("#rainbow").click(function(){
-    $("div").css({
+	$("div").css({
 		"background-color":"#444400",
 		"color":"#009999"
 	});
@@ -96,7 +108,12 @@ setInterval(function(){
 
 
 
-
+$("#craveinfo").click(function(){
+	$.getJSON("https://en.wikipedia.org/w/api.php?action=query&list=recentchanges&rcprop=title|ids|sizes|flags|user&rclimit=1&format=json&callback=json", function(json) {
+		var str = JSON.stringify(json, undefined, 2); // indentation level = 2
+	$("#wikiped").html(str);
+});
+});
 
 
 
