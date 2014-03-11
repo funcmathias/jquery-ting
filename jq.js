@@ -109,9 +109,9 @@ setInterval(function(){
 
 
 $("#craveinfo").click(function(){
-	$.getJSON("https://en.wikipedia.org/w/api.php?action=query&list=recentchanges&rcprop=title|ids|sizes|flags|user&rclimit=1&format=json&callback=json", function(json) {
-		var str = JSON.stringify(json, undefined, 2); // indentation level = 2
-	$("#wikiped").html(str);
+	$.getJSON("https://en.wikipedia.org/w/api.php?action=query&list=recentchanges&rcprop=title|ids|sizes|flags|user&rclimit=1&format=json&callback=?", function(json) {
+		var jstr = JSON.stringify(json, undefined, 2); // indentation level = 2
+	$("#wikiped").html(json.recentchanges[1].title);
 });
 });
 
