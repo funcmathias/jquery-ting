@@ -110,14 +110,18 @@ setInterval(function(){
 
 setInterval(function(){
 	$.getJSON("https://en.wikipedia.org/w/api.php?action=query&list=recentchanges&rcprop=title|ids|sizes|flags|user&rclimit=1&format=json&callback=?", function(json) {
-	var rawpagename = json.query.recentchanges[0].title;
-	var page_name = rawpagename.split(" ").join("_");
-	var linky = "https://en.wikipedia.org/wiki/" + page_name;
-	$("#wikiped").html("Recent update on Wikipedia:<br> Page Name: <a href=" + linky + ">" + rawpagename + "</a>");
+		var id = json.query.recentchanges[0].pageid;
+		var rawpagename = json.query.recentchanges[0].title;
+	
+		$.getJSON("http://en.wikipedia.org/w/api.php?action=query&prop=info&pageids=" + id + "&inprop=url&format=json&callback=?", function(json) {
+			var url = json.query.pages.a.fullurl;
+
+			$("#wikiped").html("Recent update on Wikipedia:<br> Page Name: <a href=" + url + ">" + rawpagename + "</a>");
+		});
+
+
 });
 },5000);
-
-
 
 
 
