@@ -114,7 +114,12 @@ setInterval(function(){
 	
 		
 			$.getJSON("http://en.wikipedia.org/w/api.php?action=query&prop=info&pageids=" + id + "&inprop=url&format=json&callback=?", function(json) {
+				
+			if (id == 0) {
+				var url = "http://en.wikipedia.org/wiki/" + rawpagename;
+			} else {
 				var url = json.query.pages[id].fullurl;
+			}
 
 				$("#wikiped").html("Recent update on Wikipedia:<br> Page Name: <a href=" + url + ">" + rawpagename + "</a>");
 			});
