@@ -96,8 +96,7 @@ setInterval(function(){
 
 	$("body").css({"background-color":color});
 
-	$("#head").css({"background-color":color2});
-	$("#text").css({"background-color":color2});
+	$("#head, #text, #wikiped").css({"background-color":color2});
 
 	/*alert(color);*/
 },50);
@@ -113,11 +112,12 @@ setInterval(function(){
 		var id = json.query.recentchanges[0].pageid;
 		var rawpagename = json.query.recentchanges[0].title;
 	
-		$.getJSON("http://en.wikipedia.org/w/api.php?action=query&prop=info&pageids=" + id + "&inprop=url&format=json&callback=?", function(json) {
-			var url = json.query.pages.a.fullurl;
+		
+			$.getJSON("http://en.wikipedia.org/w/api.php?action=query&prop=info&pageids=" + id + "&inprop=url&format=json&callback=?", function(json) {
+				var url = json.query.pages[id].fullurl;
 
-			$("#wikiped").html("Recent update on Wikipedia:<br> Page Name: <a href=" + url + ">" + rawpagename + "</a>");
-		});
+				$("#wikiped").html("Recent update on Wikipedia:<br> Page Name: <a href=" + url + ">" + rawpagename + "</a>");
+			});
 
 
 });
