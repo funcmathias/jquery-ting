@@ -97,8 +97,6 @@ setInterval(function(){
 	$("body").css({"background-color":color});
 
 	$("#head, #text, #wikiped").css({"background-color":color2});
-
-	/*alert(color);*/
 },50);
 });
 
@@ -115,11 +113,13 @@ setInterval(function(){
 		
 			$.getJSON("http://en.wikipedia.org/w/api.php?action=query&prop=info&pageids=" + id + "&inprop=url&format=json&callback=?", function(json) {
 				
-			if (id == 0) {
-				var url = "http://en.wikipedia.org/wiki/" + rawpagename;
-			} else {
-				var url = json.query.pages[id].fullurl;
-			}
+				if (id == 0) {
+					var page_name = rawpagename.split(" ").join("_");
+					var url = "http://en.wikipedia.org/wiki/" + page_name;
+				} else {
+					var url = json.query.pages[id].fullurl;
+
+				}
 
 				$("#wikiped").html("Recent update on Wikipedia:<br> Page Name: <a href=" + url + ">" + rawpagename + "</a>");
 			});
@@ -127,31 +127,5 @@ setInterval(function(){
 
 });
 },5000);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
